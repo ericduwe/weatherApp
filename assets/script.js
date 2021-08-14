@@ -1,14 +1,15 @@
 var weatherContainerEl = document.getElementById("weatherContainer");
+var forecastContainerEl = document.getElementById("forecast-container");
 var searchForm = document.getElementById("search-form");
-var searchButton = document.getElementById("button-addon2");
-
+var searchButton = document.querySelector(".conditions")
+var forecastButton = document.querySelector(".fiveDay")
 
 
 
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
     var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${apiKey}`
-//api key is invalid -- need to fix
+
 
     fetch(queryUrl)
 
@@ -18,6 +19,7 @@ function searchApi(query) {
         })
         .then(function (data) {
             console.log(data)
+
             var cityName = document.createElement("h3");
             cityName.textContent = data.name;
             weatherContainerEl.appendChild(cityName);
@@ -49,28 +51,66 @@ function searchApi(query) {
         })
 }
 
+function forecastApi(query) {
+    var apiKey = "aed951678fe40a952b0d63a1ad23589b";
+    var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${apiKey}`
+    
+    
+
+
+    fetch(queryUrl)
+
+        .then(function (response) {
+            console.log(response.ok)
+            return response.json()
+        })
+        .then(function (data) {
+            var lat = data.coord.lat;
+            var lon = data.coord.lon;
+            var forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&units=imperial&appid=${apiKey}`
+            fetch (forecastUrl)
+            .then(function (response) {
+                console.log(response.ok)
+                return response.json()
+            })
+            .then(function (data) {
+                console.log(data);
+
+                var
+
+            }) 
+        })
+            
+        
+            
+        
+    }
+
 function handleSearchFormSubmit(event) {
     event.preventDefault();
     weatherContainerEl.innerHTML = "";
     var searchInputVal = searchForm.value;
 
     if (!searchInputVal) {
-        console.error("Please enter a city!");
+        console.error("City name cannot be blank");
         return;
     }
 
     searchApi(searchInputVal)
 }
 
-searchButton.addEventListener("click", handleSearchFormSubmit);
+function handleForecastFormSubmit(event) {
+    event.preventDefault();
+    forecastContainerEl.innerHTML = "";
+    var searchInputVal = searchForm.value;
 
-var displayWeather = function (data, searchTerm) {
-    if (data.length === 0) {
-        weatherContainerEl.textContent = "No data Found";
-        return;
-
-    }
-
-
-
+    forecastApi(searchInputVal)
 }
+
+searchButton.addEventListener("click", handleSearchFormSubmit);
+forecastButton.addEventListener("click", handleForecastFormSubmit)
+
+
+
+
+
