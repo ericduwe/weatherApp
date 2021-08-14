@@ -8,7 +8,7 @@ let queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Dallas&appid=
 
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
-    var queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Dallas&appid=${apiKey}`
+    var queryUrl = `https://api.openweathermap.org/data/2.5/forecast/daily?q=Dallas,TX&cnt=5&appid=${apiKey}`
 
 
     fetch(queryUrl)
@@ -23,7 +23,8 @@ function searchApi(query) {
             cityName.textContent = data.city.name;
             weatherContainerEl.appendChild(cityName);
             console.log(data);
-
+            
+            var 
             if (!data.results.length) {
                 console.log("No results found");
                 weatherContainerEl.innerHTML = "<h3>No results found, search again!</h3>";
