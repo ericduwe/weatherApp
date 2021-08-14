@@ -82,6 +82,38 @@ function forecastApi(query) {
                 console.log(data);
                 
 
+                //Day Headers for Forecast
+                var currentDay = moment();
+
+                day1Day = currentDay.add(1, "day");
+                var day1DayEl = document.createElement("h4");
+                day1DayEl.textContent = day1Day.format("dddd")
+                day1Container.appendChild(day1DayEl);
+
+                var currentDay = moment();
+                day2Day = currentDay.add(2, "day");
+                var day2DayEl = document.createElement("h4");
+                day2DayEl.textContent = day2Day.format("dddd")
+                day2Container.appendChild(day2DayEl);
+
+                var currentDay = moment();
+                day3Day = currentDay.add(3, "day");
+                var day3DayEl = document.createElement("h4");
+                day3DayEl.textContent = day3Day.format("dddd")
+                day3Container.appendChild(day3DayEl);
+
+                var currentDay = moment();
+                day4Day = currentDay.add(4, "day");
+                var day4DayEl = document.createElement("h4");
+                day4DayEl.textContent = day4Day.format("dddd")
+                day4Container.appendChild(day4DayEl);
+
+                var currentDay = moment();
+                day5Day = currentDay.add(5, "day");
+                var day5DayEl = document.createElement("h4");
+                day5DayEl.textContent = day5Day.format("dddd")
+                day5Container.appendChild(day5DayEl);
+
                 //Day 1 Forecast
                 var day1High = document.createElement("h2");
                 day1High.textContent = data.daily[1].temp.max.toFixed(0) + "\u00B0 F";;
