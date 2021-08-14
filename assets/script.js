@@ -29,8 +29,9 @@ function searchApi(query) {
             weatherContainerEl.appendChild(cityName);
             console.log(data);
 
+            
             var countryName = document.createElement("h3");
-            countryName.textContent = ", " + data.sys.country;
+            countryName.textContent = getFlagEmoji(data.sys.country)
             weatherContainerEl.appendChild(countryName);
             
             var currentConditions = document.createElement("h4");
@@ -80,26 +81,48 @@ function forecastApi(query) {
             .then(function (data) {
                 console.log(data);
                 
+
+                //Day 1 Forecast
                 var day1High = document.createElement("h2");
-                day1High.textContent = data.daily[1].temp.max;
+                day1High.textContent = data.daily[1].temp.max.toFixed(0) + "\u00B0 F";;
                 day1Container.appendChild(day1High);
 
                 var day1Conditions = document.createElement("h3");
                 day1Conditions.textContent = data.daily[1].weather[0].main;
                 day1Container.appendChild(day1Conditions);
+                
+                //Day 2 Forecast
+                var day2High = document.createElement("h2");
+                day2High.textContent = data.daily[2].temp.max.toFixed(0) + "\u00B0 F";;
+                day2Container.appendChild(day2High);
 
                 var day2Conditions = document.createElement("h3");
                 day2Conditions.textContent = data.daily[2].weather[0].main;
                 day2Container.appendChild(day2Conditions);
 
+                //Day 3 Forecast
+                var day3High = document.createElement("h2");
+                day3High.textContent = data.daily[3].temp.max.toFixed(0) + "\u00B0 F";;
+                day3Container.appendChild(day3High);
+
                 var day3Conditions = document.createElement("h3");
                 day3Conditions.textContent = data.daily[3].weather[0].main;
                 day3Container.appendChild(day3Conditions);
+
+                //Day 4 Forecast
+                var day4High = document.createElement("h2");
+                day4High.textContent = data.daily[4].temp.max.toFixed(0) + "\u00B0 F";;
+                day4Container.appendChild(day4High);
 
                 var day4Conditions = document.createElement("h3");
                 day4Conditions.textContent = data.daily[4].weather[0].main;
                 day4Container.appendChild(day4Conditions);
                 
+                //Day 5 Forecast
+                var day5High = document.createElement("h2");
+                day5High.textContent = data.daily[5].temp.max.toFixed(0) + "\u00B0 F";;
+                day5Container.appendChild(day5High);
+
                 var day5Conditions = document.createElement("h3");
                 day5Conditions.textContent = data.daily[5].weather[0].main;
                 day5Container.appendChild(day5Conditions);
@@ -151,6 +174,14 @@ function changeVis(element, hideOrShow) {
     element.style.visibility = hideOrShow;
 
 };
+
+function getFlagEmoji(countryCode) {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map(char =>  127397 + char.charCodeAt());
+    return String.fromCodePoint(...codePoints);
+  }
 
 
 searchButton.addEventListener("click", handleSearchFormSubmit);
