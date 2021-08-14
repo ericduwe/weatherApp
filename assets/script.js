@@ -7,7 +7,7 @@ var searchButton = document.getElementById("button-addon2");
 
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
-    var queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=${apiKey}`
+    var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${apiKey}`
 //api key is invalid -- need to fix
 
     fetch(queryUrl)
@@ -17,11 +17,23 @@ function searchApi(query) {
             return response.json()
         })
         .then(function (data) {
-
+            console.log(data)
             var cityName = document.createElement("h3");
-            cityName.textContent = data.city.name;
+            cityName.textContent = data.name;
             weatherContainerEl.appendChild(cityName);
             console.log(data);
+
+            var countryName = document.createElement("h3");
+            countryName.textContent = ", " + data.sys.country;
+            weatherContainerEl.appendChild(countryName);
+            
+            var currentConditions = document.createElement("h4");
+            currentConditions.textContent = data.weather[0].main
+            weatherContainerEl.appendChild(currentConditions);
+
+            var currentTemp = document.createElement("h2");
+            currentTemp.textContent = data.main.temp.toFixed(0) + "\u00B0 F";
+            weatherContainerEl.appendChild(currentTemp);
             
             // var 
             // if (!data.results.length) {
@@ -39,7 +51,7 @@ function searchApi(query) {
 
 function handleSearchFormSubmit(event) {
     event.preventDefault();
-
+    weatherContainerEl.innerHTML = "";
     var searchInputVal = searchForm.value;
 
     if (!searchInputVal) {
