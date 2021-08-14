@@ -1,3 +1,12 @@
 #weatherContainer {
     background-color: lightblue;
 }
+
+#forecast-container {
+    background-color: lightpink;
+}
+
+#fiveDayHeader {
+    visibility: hidden;
+    font-size: 40px;
+}

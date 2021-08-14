@@ -3,8 +3,12 @@ var forecastContainerEl = document.getElementById("forecast-container");
 var searchForm = document.getElementById("search-form");
 var searchButton = document.querySelector(".conditions")
 var forecastButton = document.querySelector(".fiveDay")
-
-
+var day1Container = document.getElementById("day1")
+var day2Container = document.getElementById("day2")
+var day3Container = document.getElementById("day3")
+var day4Container = document.getElementById("day4")
+var day5Container = document.getElementById("day5")
+var fiveDayHeader = document.getElementById("fiveDayHeader")
 
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
@@ -75,20 +79,51 @@ function forecastApi(query) {
             })
             .then(function (data) {
                 console.log(data);
+                
+                var day1High = document.createElement("h2");
+                day1High.textContent = data.daily[1].temp.max;
+                day1Container.appendChild(day1High);
 
-                var
+                var day1Conditions = document.createElement("h3");
+                day1Conditions.textContent = data.daily[1].weather[0].main;
+                day1Container.appendChild(day1Conditions);
 
-            }) 
+                var day2Conditions = document.createElement("h3");
+                day2Conditions.textContent = data.daily[2].weather[0].main;
+                day2Container.appendChild(day2Conditions);
+
+                var day3Conditions = document.createElement("h3");
+                day3Conditions.textContent = data.daily[3].weather[0].main;
+                day3Container.appendChild(day3Conditions);
+
+                var day4Conditions = document.createElement("h3");
+                day4Conditions.textContent = data.daily[4].weather[0].main;
+                day4Container.appendChild(day4Conditions);
+                
+                var day5Conditions = document.createElement("h3");
+                day5Conditions.textContent = data.daily[5].weather[0].main;
+                day5Container.appendChild(day5Conditions);
+                
+
+             
         })
             
         
             
         
-    }
+    })
+}
 
 function handleSearchFormSubmit(event) {
     event.preventDefault();
     weatherContainerEl.innerHTML = "";
+    day1Container.innerHTML = "";
+    day2Container.innerHTML = "";
+    day3Container.innerHTML = "";
+    day4Container.innerHTML = "";
+    day5Container.innerHTML = "";
+    changeVis(fiveDayHeader, "hidden");
+    changeVis(forecastButton, "visible")
     var searchInputVal = searchForm.value;
 
     if (!searchInputVal) {
@@ -101,11 +136,22 @@ function handleSearchFormSubmit(event) {
 
 function handleForecastFormSubmit(event) {
     event.preventDefault();
-    forecastContainerEl.innerHTML = "";
+    day1Container.innerHTML = "";
+    day2Container.innerHTML = "";
+    day3Container.innerHTML = "";
+    day4Container.innerHTML = "";
+    day5Container.innerHTML = "";
     var searchInputVal = searchForm.value;
-
-    forecastApi(searchInputVal)
+    changeVis(fiveDayHeader, "visible");
+    changeVis(forecastButton, "hidden")
+    forecastApi(searchInputVal);
 }
+
+function changeVis(element, hideOrShow) {
+    element.style.visibility = hideOrShow;
+
+};
+
 
 searchButton.addEventListener("click", handleSearchFormSubmit);
 forecastButton.addEventListener("click", handleForecastFormSubmit)
