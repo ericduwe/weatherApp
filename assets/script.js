@@ -4,7 +4,7 @@ var searchButton = document.getElementById("button-addon2");
 
 let apiKey = "aed951678fe40a952b0d63a1ad23589b";
 let queryUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Dallas&appid=${apiKey}`
-searchApi();
+
 
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
@@ -13,22 +13,23 @@ function searchApi(query) {
 
     fetch(queryUrl)
 
-        .then(function (repsonse) {
-            if (!Response.ok) {
-                throw Response.json()
-            }
-            return Response.json()
+        .then(function (response) {
+            console.log(response.ok)
+            return response.json()
         })
-        .then(function (cities) {
-            weatherContainerEl.textContent = cities.search.query
-            console.log(cities);
+        .then(function (data) {
 
-            if (!cities.results.length) {
+            var cityName = document.createElement("h3");
+            cityName.textContent = data.city.name;
+            weatherContainerEl.appendChild(cityName);
+            console.log(data);
+
+            if (!data.results.length) {
                 console.log("No results found");
                 weatherContainerEl.innerHTML = "<h3>No results found, search again!</h3>";
             } else {
                 weatherContainerEl.textContent = "";
-                for (var i=0; i < cities.results.length;i++) {
+                for (var i=0; i < data.results.length;i++) {
                      printResults(weatherContainer.results[i]);
                 }
             }
@@ -51,9 +52,9 @@ function handleSearchFormSubmit(event) {
 
 searchButton.addEventListener("click", handleSearchFormSubmit);
 
-var displayWeather = function (cities, searchTerm) {
-    if (cities.length === 0) {
-        weatherContainerEl.textContent = "No Cities Found";
+var displayWeather = function (data, searchTerm) {
+    if (data.length === 0) {
+        weatherContainerEl.textContent = "No data Found";
         return;
 
     }
