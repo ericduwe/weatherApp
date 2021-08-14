@@ -29,29 +29,38 @@ function searchApi(query) {
             weatherContainerEl.appendChild(cityName);
             console.log(data);
 
-            
             var countryName = document.createElement("h3");
             countryName.textContent = getFlagEmoji(data.sys.country)
             weatherContainerEl.appendChild(countryName);
+
+            var currentDate = document.createElement("h5");
+            currentDate.textContent = moment().format("dddd MMM Do, YYYY");
+            weatherContainerEl.appendChild(currentDate);
             
             var currentConditions = document.createElement("h4");
             currentConditions.textContent = data.weather[0].main
             weatherContainerEl.appendChild(currentConditions);
 
+            var currentIcon = document.createElement("img");
+            var weatherCode = data.weather[0].icon;
+            currentIcon.src = `https://openweathermap.org/img/wn/${weatherCode}@2x.png`;
+            weatherContainerEl.appendChild(currentIcon);
+
             var currentTemp = document.createElement("h2");
             currentTemp.textContent = data.main.temp.toFixed(0) + "\u00B0 F";
             weatherContainerEl.appendChild(currentTemp);
-            
-            // var 
-            // if (!data.results.length) {
-            //     console.log("No results found");
-            //     weatherContainerEl.innerHTML = "<h3>No results found, search again!</h3>";
-            // } else {
-            //     weatherContainerEl.textContent = "";
-            //     for (var i=0; i < data.results.length;i++) {
-            //          printResults(weatherContainer.results[i]);
-            //     }
-            // }
+
+            var currentHumidity = document.createElement("h6");
+            currentHumidity.textContent = "Humidity: " + data.main.humidity + "%"
+            weatherContainerEl.appendChild(currentHumidity);
+
+            var windSpeed = document.createElement("h6");
+            windSpeed.textContent = "Wind Speed: " + data.wind.speed + "mph"
+            weatherContainerEl.appendChild(windSpeed);
+
+            var uvIndex = document.createElement("h6");
+            uvIndex.textContent = "UV Index: " + data.wind.speed + "mph"
+            weatherContainerEl.appendChild(windSpeed);
 
         })
 }
@@ -114,6 +123,8 @@ function forecastApi(query) {
                 day5DayEl.textContent = day5Day.format("dddd")
                 day5Container.appendChild(day5DayEl);
 
+
+
                 //Day 1 Forecast
                 var day1High = document.createElement("h2");
                 day1High.textContent = data.daily[1].temp.max.toFixed(0) + "\u00B0 F";;
@@ -122,6 +133,25 @@ function forecastApi(query) {
                 var day1Conditions = document.createElement("h3");
                 day1Conditions.textContent = data.daily[1].weather[0].main;
                 day1Container.appendChild(day1Conditions);
+
+                var day1Icon = document.createElement("img");
+                var day1WeatherCode = data.daily[1].weather[0].icon;
+                day1Icon.src = `https://openweathermap.org/img/wn/${day1WeatherCode}@2x.png`;
+                day1Container.appendChild(day1Icon);
+
+                var day1Humidity = document.createElement("h6");
+                day1Humidity.textContent = "Forecast Humidity: " + data.daily[1].humidity + "%"
+                day1Container.appendChild(day1Humidity);
+
+                var day1WindSpeed = document.createElement("h6");
+                day1WindSpeed.textContent = "Wind Speed: " + data.daily[1].wind_speed.toFixed(0) + "mph"
+                day1Container.appendChild(day1WindSpeed);
+
+                var day1UVIndex = document.createElement("h6");
+                day1UVIndex.textContent = "UV Index: " + data.daily[1].uvi.toFixed(0);
+                day1Container.appendChild(day1UVIndex);
+
+
                 
                 //Day 2 Forecast
                 var day2High = document.createElement("h2");
@@ -132,6 +162,23 @@ function forecastApi(query) {
                 day2Conditions.textContent = data.daily[2].weather[0].main;
                 day2Container.appendChild(day2Conditions);
 
+                var day2Icon = document.createElement("img");
+                var day2WeatherCode = data.daily[2].weather[0].icon;
+                day2Icon.src = `https://openweathermap.org/img/wn/${day1WeatherCode}@2x.png`;
+                day2Container.appendChild(day2Icon);
+
+                var day2Humidity = document.createElement("h6");
+                day2Humidity.textContent = "Forecast Humidity: " + data.daily[2].humidity + "%"
+                day2Container.appendChild(day2Humidity);
+
+                var day2WindSpeed = document.createElement("h6");
+                day2WindSpeed.textContent = "Wind Speed: " + data.daily[2].wind_speed.toFixed(0) + "mph"
+                day2Container.appendChild(day2WindSpeed);
+
+                var day2UVIndex = document.createElement("h6");
+                day2UVIndex.textContent = "UV Index: " + data.daily[2].uvi.toFixed(0);
+                day2Container.appendChild(day2UVIndex);
+
                 //Day 3 Forecast
                 var day3High = document.createElement("h2");
                 day3High.textContent = data.daily[3].temp.max.toFixed(0) + "\u00B0 F";;
@@ -141,6 +188,23 @@ function forecastApi(query) {
                 day3Conditions.textContent = data.daily[3].weather[0].main;
                 day3Container.appendChild(day3Conditions);
 
+                var day3Icon = document.createElement("img");
+                var day3WeatherCode = data.daily[3].weather[0].icon;
+                day3Icon.src = `https://openweathermap.org/img/wn/${day1WeatherCode}@2x.png`;
+                day3Container.appendChild(day3Icon);
+
+                var day3Humidity = document.createElement("h6");
+                day3Humidity.textContent = "Forecast Humidity: " + data.daily[3].humidity + "%"
+                day3Container.appendChild(day3Humidity);
+
+                var day3WindSpeed = document.createElement("h6");
+                day3WindSpeed.textContent = "Wind Speed: " + data.daily[3].wind_speed.toFixed(0) + "mph"
+                day3Container.appendChild(day3WindSpeed);
+
+                var day3UVIndex = document.createElement("h6");
+                day3UVIndex.textContent = "UV Index: " + data.daily[3].uvi.toFixed(0);
+                day3Container.appendChild(day3UVIndex);
+
                 //Day 4 Forecast
                 var day4High = document.createElement("h2");
                 day4High.textContent = data.daily[4].temp.max.toFixed(0) + "\u00B0 F";;
@@ -149,6 +213,23 @@ function forecastApi(query) {
                 var day4Conditions = document.createElement("h3");
                 day4Conditions.textContent = data.daily[4].weather[0].main;
                 day4Container.appendChild(day4Conditions);
+
+                var day4Icon = document.createElement("img");
+                var day4WeatherCode = data.daily[4].weather[0].icon;
+                day4Icon.src = `https://openweathermap.org/img/wn/${day1WeatherCode}@2x.png`;
+                day4Container.appendChild(day4Icon);
+
+                var day4Humidity = document.createElement("h6");
+                day4Humidity.textContent = "Forecast Humidity: " + data.daily[4].humidity + "%"
+                day4Container.appendChild(day4Humidity);
+
+                var day4WindSpeed = document.createElement("h6");
+                day4WindSpeed.textContent = "Wind Speed: " + data.daily[4].wind_speed.toFixed(0) + "mph"
+                day4Container.appendChild(day4WindSpeed);
+
+                var day4UVIndex = document.createElement("h6");
+                day4UVIndex.textContent = "UV Index: " + data.daily[4].uvi.toFixed(0);
+                day4Container.appendChild(day4UVIndex);
                 
                 //Day 5 Forecast
                 var day5High = document.createElement("h2");
@@ -158,6 +239,23 @@ function forecastApi(query) {
                 var day5Conditions = document.createElement("h3");
                 day5Conditions.textContent = data.daily[5].weather[0].main;
                 day5Container.appendChild(day5Conditions);
+
+                var day5Icon = document.createElement("img");
+                var day5WeatherCode = data.daily[5].weather[0].icon;
+                day5Icon.src = `https://openweathermap.org/img/wn/${day1WeatherCode}@2x.png`;
+                day5Container.appendChild(day5Icon);
+
+                var day5Humidity = document.createElement("h6");
+                day5Humidity.textContent = "Forecast Humidity: " + data.daily[5].humidity + "%"
+                day5Container.appendChild(day5Humidity);
+
+                var day5WindSpeed = document.createElement("h6");
+                day5WindSpeed.textContent = "Wind Speed: " + data.daily[5].wind_speed.toFixed(0) + "mph"
+                day5Container.appendChild(day5WindSpeed);
+
+                var day5UVIndex = document.createElement("h6");
+                day5UVIndex.textContent = "UV Index: " + data.daily[5].uvi.toFixed(0);
+                day5Container.appendChild(day5UVIndex);
                 
 
              
