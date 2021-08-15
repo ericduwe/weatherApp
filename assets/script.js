@@ -15,7 +15,7 @@ var alerts = document.getElementById("alert-container")
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
     var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${apiKey}`
-
+    localStorage.setItem("search", queryUrl)
 
     fetch(queryUrl)
 
@@ -269,7 +269,7 @@ function forecastApi(query) {
 
 
                 //Weather Alerts
-                if (data.alerts[0]) {
+                if (data.alerts) {
                 changeVis(alerts, "visible")
                 var weatherAlertTitle = document.createElement("h3")
                 weatherAlertTitle.textContent = data.alerts[0].event.toUpperCase() + " Alert from " + data.alerts[0].sender_name
@@ -328,7 +328,6 @@ function handleForecastFormSubmit(event) {
     changeVis(fiveDayHeader, "visible");
     changeVis(forecastButton, "hidden")
     changeVis(forecastContainerEl, "visible")
-    changeVis(alerts, "visible");
     forecastApi(searchInputVal);
 }
 
