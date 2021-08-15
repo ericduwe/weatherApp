@@ -2,11 +2,24 @@
     background-color: lightblue;
 }
 
-#forecast-container {
-    background-color: lightpink;
-}
+
 
 #fiveDayHeader {
     visibility: hidden;
 }
 
+#forecast-container {
+    visibility: hidden;
+}
+
+#alert-container {
+    background-color: red;
+    visibility: hidden;
+
+}
+
+.col {
+    border: 3px solid white;
+    background-color: lightpink
+
+}

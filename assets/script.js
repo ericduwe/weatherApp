@@ -9,6 +9,8 @@ var day3Container = document.getElementById("day3")
 var day4Container = document.getElementById("day4")
 var day5Container = document.getElementById("day5")
 var fiveDayHeader = document.getElementById("fiveDayHeader")
+var alertContainer = document.getElementById("alert-text")
+var alerts = document.getElementById("alert-container")
 
 function searchApi(query) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
@@ -37,7 +39,7 @@ function searchApi(query) {
             var timeInUTC = moment().utc()
             var timeInZone = timeInUTC.add(timeZoneOffset, "hour")
             var currentDate = document.createElement("h5");
-            currentDate.textContent = timeInZone.format("dddd MMM Do, YYYY hh:mm")
+            currentDate.textContent = timeInZone.format("dddd MMM Do, YYYY hh:mm a")
             weatherContainerEl.appendChild(currentDate);
             
             var currentConditions = document.createElement("h4");
@@ -212,7 +214,7 @@ function forecastApi(query) {
                 var day3UVIndex = document.createElement("h6");
                 day3UVIndex.textContent = "UV Index: " + data.daily[3].uvi.toFixed(0);
                 day3Container.appendChild(day3UVIndex);
-
+                
                 //Day 4 Forecast
                 var day4High = document.createElement("h2");
                 day4High.textContent = data.daily[4].temp.max.toFixed(0) + "\u00B0 F";;
@@ -264,8 +266,24 @@ function forecastApi(query) {
                 var day5UVIndex = document.createElement("h6");
                 day5UVIndex.textContent = "UV Index: " + data.daily[5].uvi.toFixed(0);
                 day5Container.appendChild(day5UVIndex);
-                
 
+
+                //Weather Alerts
+                if (data.alerts[0]) {
+                changeVis(alerts, "visible")
+                var weatherAlertTitle = document.createElement("h3")
+                weatherAlertTitle.textContent = data.alerts[0].event.toUpperCase() + " Alert from " + data.alerts[0].sender_name
+                alertContainer.appendChild(weatherAlertTitle);
+
+                var weatherAlertText = document.createElement("p")
+                weatherAlertText.textContent = data.alerts[0].description
+                alertContainer.appendChild(weatherAlertText);
+            
+            
+            
+            }    
+
+                
              
         })
             
@@ -283,8 +301,11 @@ function handleSearchFormSubmit(event) {
     day3Container.innerHTML = "";
     day4Container.innerHTML = "";
     day5Container.innerHTML = "";
+    alertContainer.innerHTML = "";
+    changeVis(alerts, "hidden")
     changeVis(fiveDayHeader, "hidden");
     changeVis(forecastButton, "visible")
+    changeVis(forecastContainerEl, "hidden")
     var searchInputVal = searchForm.value;
 
     if (!searchInputVal) {
@@ -302,9 +323,12 @@ function handleForecastFormSubmit(event) {
     day3Container.innerHTML = "";
     day4Container.innerHTML = "";
     day5Container.innerHTML = "";
+    alertContainer.innerHTML = "";
     var searchInputVal = searchForm.value;
     changeVis(fiveDayHeader, "visible");
     changeVis(forecastButton, "hidden")
+    changeVis(forecastContainerEl, "visible")
+    changeVis(alerts, "visible");
     forecastApi(searchInputVal);
 }
 
