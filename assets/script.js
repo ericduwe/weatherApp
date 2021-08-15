@@ -37,7 +37,7 @@ function searchApi(query) {
             var timeInUTC = moment().utc()
             var timeInZone = timeInUTC.add(timeZoneOffset, "hour")
             var currentDate = document.createElement("h5");
-            currentDate.textContent = timeInZone.format("dddd MMM Do, YYYY hh:mm a");
+            currentDate.textContent = timeInZone.format("dddd MMM Do, YYYY hh:mm")
             weatherContainerEl.appendChild(currentDate);
             
             var currentConditions = document.createElement("h4");
@@ -95,33 +95,38 @@ function forecastApi(query) {
                 
 
                 //Day Headers for Forecast
-                var currentDay = moment();
+                var timeZoneOffset = (data.timezone_offset)/3600
+                var timeInUTC = moment().utc()
+                var timeInZone = timeInUTC.add(timeZoneOffset, "hour")
+                
 
-                day1Day = currentDay.add(1, "day");
+                
+
+                day1Day = timeInZone.add(1, "day");
                 var day1DayEl = document.createElement("h4");
                 day1DayEl.textContent = day1Day.format("dddd")
                 day1Container.appendChild(day1DayEl);
 
-                var currentDay = moment();
-                day2Day = currentDay.add(2, "day");
+                
+                day2Day = day1Day.add(1, "day");
                 var day2DayEl = document.createElement("h4");
                 day2DayEl.textContent = day2Day.format("dddd")
                 day2Container.appendChild(day2DayEl);
 
-                var currentDay = moment();
-                day3Day = currentDay.add(3, "day");
+                
+                day3Day = day2Day.add(1, "day");
                 var day3DayEl = document.createElement("h4");
                 day3DayEl.textContent = day3Day.format("dddd")
                 day3Container.appendChild(day3DayEl);
 
-                var currentDay = moment();
-                day4Day = currentDay.add(4, "day");
+                
+                day4Day = day3Day.add(1, "day");
                 var day4DayEl = document.createElement("h4");
                 day4DayEl.textContent = day4Day.format("dddd")
                 day4Container.appendChild(day4DayEl);
 
-                var currentDay = moment();
-                day5Day = currentDay.add(5, "day");
+                
+                day5Day = day4Day.add(1, "day");
                 var day5DayEl = document.createElement("h4");
                 day5DayEl.textContent = day5Day.format("dddd")
                 day5Container.appendChild(day5DayEl);
