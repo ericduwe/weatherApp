@@ -33,8 +33,11 @@ function searchApi(query) {
             countryName.textContent = getFlagEmoji(data.sys.country)
             weatherContainerEl.appendChild(countryName);
 
+            var timeZoneOffset = (data.timezone)/3600
+            var timeInUTC = moment().utc()
+            var timeInZone = timeInUTC.add(timeZoneOffset, "hour")
             var currentDate = document.createElement("h5");
-            currentDate.textContent = moment().format("dddd MMM Do, YYYY");
+            currentDate.textContent = timeInZone.format("dddd MMM Do, YYYY hh:mm a");
             weatherContainerEl.appendChild(currentDate);
             
             var currentConditions = document.createElement("h4");
