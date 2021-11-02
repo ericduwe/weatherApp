@@ -9,6 +9,7 @@ var day2Container = document.getElementById("day2")
 var day3Container = document.getElementById("day3")
 var day4Container = document.getElementById("day4")
 var day5Container = document.getElementById("day5")
+var conditionsHeader = document.getElementById("conditions-title")
 var fiveDayHeader = document.getElementById("fiveDayHeader")
 var alertContainer = document.getElementById("alert-text")
 var alerts = document.getElementById("alert-container")
@@ -307,6 +308,8 @@ function handleSearchFormSubmit(event) {
     changeVis(fiveDayHeader, "hidden");
     changeVis(forecastButton, "visible")
     changeVis(forecastContainerEl, "hidden")
+    changeVis(conditionsHeader, "visible")
+    changeVis(weatherContainerEl, "visible");
     var searchInputVal = searchForm.value;
 
     if (!searchInputVal) {
@@ -315,49 +318,9 @@ function handleSearchFormSubmit(event) {
     }
 
     searchApi(searchInputVal);
-    addToHistory(searchInputVal);
-    showHistory();
+
 
 }
-
-function addToHistory(search) {
-
-    recentlyViewed.push(search);
-    localStorage.setItem("city", recentlyViewed)
-}
-
-function showHistory() {
-    searchContainerEl.innerHTML = ""
-    for (var i = 0; i < recentlyViewed.length; i++) {
-        var recentSearch = document.createElement("button")
-        recentSearch.textContent = recentlyViewed[i]
-        searchContainerEl.appendChild(recentSearch)
-        recentSearch.addEventListener("click", handleRecentSearch)
-
-        function handleRecentSearch(event) {
-            event.preventDefault();
-            weatherContainerEl.innerHTML = "";
-            day1Container.innerHTML = "";
-            day2Container.innerHTML = "";
-            day3Container.innerHTML = "";
-            day4Container.innerHTML = "";
-            day5Container.innerHTML = "";
-            alertContainer.innerHTML = "";
-            changeVis(alerts, "hidden")
-            changeVis(fiveDayHeader, "hidden");
-            changeVis(forecastButton, "visible")
-            changeVis(forecastContainerEl, "hidden")
-            var searchInputVal = EventTarget.textContent;
-            searchApi(searchInputVal);
-        }
-    }
-}
-
-
-
-
-
-
 
 
 function handleForecastFormSubmit(event) {

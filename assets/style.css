@@ -1,15 +1,23 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
 #weatherContainer {
     background-color: lightblue;
+    visibility: hidden;
 }
 
 
 
 #fiveDayHeader {
     visibility: hidden;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 35px;
 }
 
 #forecast-container {
     visibility: hidden;
+
 }
 
 #alert-container {
@@ -23,3 +31,50 @@
     background-color: lightpink
 
 }
+
+#search-bar {
+    margin: auto;
+    max-width: 50%;
+}
+
+button {
+    justify-content: center;
+}
+
+#page-title {
+    background-color: rgb(80, 200, 255);
+}
+
+#page-title h1 {
+    text-align: center;
+}
+
+#city-input {
+    margin: auto;
+}
+
+#form-label {
+    margin: auto;
+}
+
+button {
+    margin: auto;
+}
+
+#fiveday-button {
+    visibility: hidden;
+}
+
+#conditions-title {
+    visibility: hidden;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 35px;
+}
+
+#forecast-grid {
+    display: flex;
+    justify-content: center;
+}
+
