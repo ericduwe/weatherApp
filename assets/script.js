@@ -16,9 +16,10 @@ var alerts = document.getElementById("alert-container")
 var apiKey = "aed951678fe40a952b0d63a1ad23589b";
 var recentlyViewed = [];
 
-function searchApi(query) {
+function searchApi(city,state,country) {
+
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
-    var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${apiKey}`
+    var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=${apiKey}`
 
 
 
@@ -77,9 +78,9 @@ function searchApi(query) {
         })
 }
 
-function forecastApi(query) {
+function forecastApi(city,state,country) {
     var apiKey = "aed951678fe40a952b0d63a1ad23589b";
-    var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=imperial&appid=${apiKey}`
+    var queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&units=imperial&appid=${apiKey}`
 
 
 

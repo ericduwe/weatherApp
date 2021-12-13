@@ -1,7 +1,12 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+
+body {
+    background-color: #CAF0F8;
+}
+
 #weatherContainer {
-    background-color: lightblue;
+    background-color: #0077B6;
     visibility: hidden;
 }
 
@@ -28,7 +33,7 @@
 
 .col {
     border: 3px solid white;
-    background-color: lightpink
+    background-color: #90E0EF
 
 }
 
@@ -42,7 +47,13 @@ button {
 }
 
 #page-title {
-    background-color: rgb(80, 200, 255);
+    background-color: #023E8A;
+    
+}
+
+.title {
+    color: white;
+
 }
 
 #page-title h1 {
